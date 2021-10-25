@@ -32,7 +32,7 @@ const Performance = () => {
       setCurDep(deps[0].name)
     }
   }, [deps])
-  useEffect(() => {
+  useEffect(async () => {
     let url = await axios.get(`${ip}/api/performance`)
     seturl(url.data.data)
   }, [])

@@ -17,6 +17,7 @@ export default function Login() {
         if (data.role === "Admin") router.push("/admin");
         else if (data.role === "salesperson") router.push("/Sales/SalesPerson");
         else if (data.role === "salesleader") router.push("/Sales/SalesLeader");
+        else if (data.role === "HDD") router.push("/HDD");
     }
 
     useEffect(async () => {

@@ -85,9 +85,9 @@ const Breaks = () => {
         updateBreaks()
         updateStatus()
         getTotalTime()
-        return () => {
-            setTotal(0)
-        }
+        // return () => {
+        //     setTotal(0)
+        // }
     }, [])
 
     return (

@@ -9,7 +9,6 @@ import Sales from './sales'
 import Attendance from './attendance'
 import router from 'next/router'
 import axios from 'axios'
-import Upload from './Upload'
 
 export default function index() {
     const ip = useRecoilValue(ipAtom)
@@ -50,8 +49,6 @@ export default function index() {
             return <Attendance />
         } else if (select == "Edit") {
             return (<Profile />)
-        } else if (select == "Upload") {
-            return (<Upload />)
         }
     }
     console.log("render", select)

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import { salesTableAtom } from '../../state/salesState';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { ipAtom } from '../../state/state';
 
 function Sales() {
+    const ip = useRecoilValue(ipAtom)
     const [salesTableData, setSalesTableData] = useRecoilState(salesTableAtom);
     const [salesLeaders, setSalesLeaders] = useState([]);
     const [selectedSalesLeaderID, setSelectedSalesLeaderID] = useState("");
@@ -82,7 +84,7 @@ function Sales() {
 
     const postAssignSalesLeader = async () => {
         try {
-            let url = "${ip}/api/sales/assignSalesLeader";
+            let url = `${ip}/api/sales/assignSalesLeader`;
             const token = localStorage.getItem("pepcoding_token");
             let response = await axios.post(url, {
                 start: startID,

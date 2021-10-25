@@ -5,6 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { ipAtom } from '../../../state/state';
 
 function Sales() {
+
     const [salesTableData, setSalesTableData] = useRecoilState(salesTableAtom);
     const [salesLeaders, setSalesLeaders] = useState([]);
     const [selectedSalesLeaderID, setSelectedSalesLeaderID] = useState("");
@@ -14,7 +15,7 @@ function Sales() {
     const ip = useRecoilValue(ipAtom)
     const getSalesData = async () => {
         try {
-            const url = "${ip}/api/sales";
+            const url = `${ip}/api/sales`;
             const token = localStorage.getItem("pepcoding_token");
 
             let response = await axios.get(url, {

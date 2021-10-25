@@ -26,5 +26,6 @@ export const ipAtom = atom(
     {
         key: "ip",
         default: "http://165.232.182.78:8080"
+        // default: "http://192.168.1.160:8080"
     }
 )

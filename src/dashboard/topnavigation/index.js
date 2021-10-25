@@ -4,7 +4,7 @@ import { useToggle } from '../provider/context';
 export default function TopNavigation() {
   const { toggle } = useToggle();
   return (
-    <header className="relative z-10 items-center w-full h-20 bg-body z-50">
+    <header className="relative z-10 z-50 items-center w-full h-20 bg-body">
       <div className="relative flex flex-col justify-center h-full px-3 mx-auto">
         <div className="relative flex items-center w-full pl-1 sm:ml-0 sm:pr-2 lg:max-w-68">
           <div className="relative left-0 flex w-3/4">
@@ -21,7 +21,7 @@ export default function TopNavigation() {
             </div>
           </div>
           <div className="relative flex items-center justify-end w-full p-1 ml-5 sm:mr-0 sm:right-auto">
-            <button className="block pr-5  bg-gray-400 mr-5 text-center px-4 py-2 text-white font-extrabold rounded"
+            <button className="block px-4 py-2 pr-5 mr-5 font-extrabold text-center text-white bg-gray-400 rounded"
               onClick={() => {
                 localStorage.removeItem('pepcoding_token');
                 router.push('/Login');

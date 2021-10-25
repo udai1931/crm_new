@@ -44,8 +44,8 @@ const Performance = () => {
         <iframe
           src={url}
           frameborder="0"
-          width="800"
-          height="600"
+          width="100%"
+          height="100"
           allowtransparency
         ></iframe>
       </div>

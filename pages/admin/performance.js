@@ -36,8 +36,8 @@ const Performance = () => {
     let url = await axios.get(`${ip}/api/performance`)
     seturl(url.data.data)
   }, [])
+  const [url, seturl] = useState('')
   const ip = useRecoilValue(ipAtom);
-  const [url, seturl] = useState(initialState)
   return (
     <>
       <div className="flex flex-col flex-wrap sm:flex-row">

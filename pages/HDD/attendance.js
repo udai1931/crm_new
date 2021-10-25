@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios";
+import { useRecoilValue } from 'recoil';
+import { ipAtom } from '../../state/state';
 
 function Attendance() {
     const [departmentData, setDepartmentData] = useState({});
     const [dayData, setDayData] = useState({});
-
+    const ip = useRecoilValue(ipAtom)
     const markInTimeRequest = async (user_id, userIdx) => {
         try {
 

@@ -34,7 +34,8 @@ const Performance = () => {
   }, [deps])
   useEffect(async () => {
     let url = await axios.get(`${ip}/api/performance`)
-    seturl(url.data.data)
+    console.log(url);
+    seturl(url)
   }, [])
   const [url, seturl] = useState('')
   const ip = useRecoilValue(ipAtom);
@@ -45,7 +46,7 @@ const Performance = () => {
           src={url}
           frameborder="0"
           width="100%"
-          height="100"
+          height="100%"
           allowtransparency
         ></iframe>
       </div>

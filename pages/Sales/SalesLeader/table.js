@@ -5,7 +5,7 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import { ipAtom } from '../../../state/state';
 
 function Sales() {
-    const ip = useRecoilValue(ipAtom);
+
     const [salesTableData, setSalesTableData] = useRecoilState(salesTableAtom);
     const [salesLeaders, setSalesLeaders] = useState([]);
     const [selectedSalesLeaderID, setSelectedSalesLeaderID] = useState("");

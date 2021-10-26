@@ -21,21 +21,23 @@ function Attendance() {
                 }
             })
             console.log(response, "intime ");
-            getData(user_id, userIdx, "in_time")
+            getDepartmentMembers();
+            // getData(user_id, userIdx, "in_time")
             // show notification
-            if (Notification.permission === "granted") {
-                const notification = new Notification("Attendance", {
-                    body: "You have successfully marked in time",
-                })
-            } else {
+            // if (Notification.permission === "granted") {
+            //     const notification = new Notification("Attendance", {
+            //         body: "You have successfully marked in time",
+            //     })
+            // } else {
 
-            }
-            alert(Notification.permission)
+            // }
+            // alert(Notification.permission)
         } catch (err) {
             console.log(err);
         }
     }
     const markOutTimeRequest = async (user_id, userIdx, day_id) => {
+        console.log(day_id)
         try {
             const url = `${ip}/api/day/markOutTime`;
             const token = localStorage.getItem("pepcoding_token");
@@ -49,10 +51,24 @@ function Attendance() {
                 }
             })
             console.log(response?.data);
-            getData(user_id, userIdx, "out_time")
+            getDepartmentMembers()
         } catch (err) {
             console.log(err);
         }
+    }
+
+    function formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [year, month, day].join('-');
     }
 
     const getData = async (user_id, userIdx, time) => {
@@ -181,9 +197,9 @@ function Attendance() {
                                                     </td> */}
                                                     <td className="px-5 text-sm bg-white border-b border-gray-200">
                                                         <p className="text-gray-900 whitespace-no-wrap">
-                                                            {/* {console.log("vbivberrivbri",user)} */}
+                                                            {console.log(formatDate(new Date()))}
                                                             {
-                                                                user?.Days[0]?.in_time || <button
+                                                                (user.Days.length > 0 && user?.Days[user.Days.length - 1]?.today == formatDate(new Date()) && user?.Days[user.Days.length - 1]?.in_time) ? user?.Days[user.Days.length - 1]?.in_time : <button
                                                                     onClick={() => markInTimeRequest(departmentData.users[idx].user_id, idx)}
                                                                     className="px-4 py-2 font-bold text-white uppercase bg-blue-500 rounded hover:bg-blue-700">CHECK IN</button>
                                                             }
@@ -192,8 +208,9 @@ function Attendance() {
                                                     <td className="px-5 text-sm bg-white border-b border-gray-200">
                                                         <p className="text-gray-900 whitespace-no-wrap">
                                                             {
-                                                                user?.Days[0]?.out_time || <button
-                                                                    onClick={() => markOutTimeRequest(departmentData.users[idx].user_id, idx, user?.Days[0]?.day_id)}
+                                                                // user?.Days[0]?.out_time || <button
+                                                                (user.Days.length > 0 && user?.Days[user.Days.length - 1]?.today == formatDate(new Date()) && user?.Days[user.Days.length - 1]?.out_time) ? user?.Days[user.Days.length - 1]?.out_time : <button
+                                                                    onClick={() => markOutTimeRequest(departmentData.users[idx].user_id, idx, user?.Days[user.Days.length - 1]?.day_id)}
                                                                     className="px-4 py-2 font-bold text-white uppercase bg-blue-500 rounded hover:bg-blue-700">CHECK OUT</button>
                                                             }
                                                         </p>

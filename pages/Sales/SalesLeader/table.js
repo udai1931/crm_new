@@ -208,7 +208,7 @@ function Sales() {
                                 onChange={(e) => setSelectedSalesLeaderID(e.target.value)}
                                 id='form-subscribe-Filter department-filter'
                                 className="flex-1 w-full px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-transparent border-gray-300 rounded shadow-sm appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                                <option value="null">Select Leader</option>
+                                <option value="null">Select Person</option>
                                 {
                                     salesLeaders.map((leaderObj, idx) => {
                                         return <option key={idx} value={leaderObj.user_id}>{leaderObj.name}</option>
@@ -257,7 +257,7 @@ function Sales() {
                 (salesTableData.length === 0)
                     ? <h2 className="mb-4 text-2xl font-bold leading-7 text-center text-gray-900 sm:text-3xl">Oops!! No Sales Data @ the moment..</h2>
                     :
-                    <div className="overflow-x-auto rounded-lg shadow">
+                    <div className="overflow-x-auto rounded-lg shadow" style={{ height: "70vh" }}>
                         <table className="w-full leading-normal">
                             <thead>
                                 <tr>

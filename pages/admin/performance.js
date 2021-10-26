@@ -40,7 +40,6 @@ const Performance = () => {
   const [url, seturl] = useState('')
   const ip = useRecoilValue(ipAtom);
   return (
-    <>
       <div className="flex flex-col flex-wrap sm:flex-row">
         <iframe
           src={url}
@@ -50,7 +49,6 @@ const Performance = () => {
           allowtransparency
         ></iframe>
       </div>
-    </>
   )
 }
 

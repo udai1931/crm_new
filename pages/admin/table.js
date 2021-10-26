@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useRouter } from 'next/router'
 import { useRecoilState, useRecoilValue } from "recoil";
-import { sideBarAtom ,ipAtom} from "../../state/state";
+import { sideBarAtom, ipAtom } from "../../state/state";
 import { selectedUser } from "../../state/profileState";
 
 const Content = () => {
@@ -184,11 +184,11 @@ const Content = () => {
         // setDepartments([...departments,{id:data.data.department.department_id,name:data.data.department.name}])
         setNewEmp({})
         try {
-            let data = await axios.get(`${ip}/api/users/getAll`,{
-                    'headers': {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
+            let data = await axios.get(`${ip}/api/users/getAll`, {
+                'headers': {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             if (data.data.success == 2) {
                 localStorage.setItem("pepcoding_token", null);
                 router.push('/Login')
@@ -477,7 +477,7 @@ const Content = () => {
                         (filteredUsers.length === 0)
                             ? <h2 className="mb-4 text-2xl font-bold leading-7 text-center text-gray-900 sm:text-3xl">Oops!! No Data @ the moment..</h2>
                             :
-                            <div className="max-w-full overflow-x-auto rounded-lg shadow">
+                            <div className="max-w-full overflow-x-auto rounded-lg shadow" style={{ height: "70vh" }} >
                                 <table className="w-full leading-normal">
                                     <thead>
                                         <tr>

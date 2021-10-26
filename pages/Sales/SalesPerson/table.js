@@ -167,7 +167,7 @@ function Table() {
                 {(salesTableData.length === 0)
                     ? <h2 className="mb-4 text-2xl font-bold leading-7 text-center text-gray-900 sm:text-3xl">Oops!! No Sales Data @ the moment..</h2>
                     :
-                    <div className="overflow-x-auto rounded-lg shadow">
+                    <div className="overflow-x-auto rounded-lg shadow" style={{ height: "70vh" }}>
                         <table className="w-full leading-normal">
                             <thead>
                                 <tr>

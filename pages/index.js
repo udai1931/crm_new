@@ -12,10 +12,11 @@ export default function Home() {
     const [user, setUser] = useRecoilState(userAtom)
     const ip = useRecoilValue(ipAtom)
     const handleUserRoute = (data) => {
-        if (data.role === "Admin") router.push("/admin");
+        if (data.role === "Admin" ) router.push("/admin");
         else if (data.role === "salesperson") router.push("/Sales/SalesPerson");
         else if (data.role === "salesleader") router.push("/Sales/SalesLeader");
-        else if (data.role === "HDD") router.push("/HDD");
+        else if (data.role === "HDD" || data.role == "hdd") router.push("/HDD");
+        else if (data.role === "Employee" || data.role == "employee" || data.role == "EMPLOYEE") router.push("/employee");
     }
     useEffect(async () => {
         try {

@@ -5,14 +5,14 @@ import TopNavigation from '../../src/dashboard/topnavigation'
 import SideNavigation from '../../components/employeeSideNavigation'
 import { useToggle } from '../../src/dashboard/provider/context'
 import { useRouter } from 'next/router'
-import { sideBarAtom } from '../../state/state'
+import { ipAtom, sideBarAtom } from '../../state/state'
 import Attendance from './attendance'
 import Rating from './rating'
 import Health from './health'
 import Happiness from './happiness'
 import Breaks from './breaks'
 import Profile from './profile'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useRecoilValueLoadable } from 'recoil'
 import { employeeSideBarAtom } from '../../state/employeeState'
 import axios from 'axios'
 import { employeeDayAtom } from '../../state/employeeState'
@@ -41,20 +41,22 @@ function index() {
             return <Health />
         } else if (select == "Happiness") {
             return <Happiness />
-        } else if (select == "Rating"){
-            return <Rating/>
+        } else if (select == "Rating") {
+            return <Rating />
         }
     }
 
+    const ip = useRecoilValue(ipAtom)
+
     const getEmployeeDayData = async () => {
-        const url = "http://192.168.1.159:8080/api/employee";
+        const url = `${ip}/api/employee`;
         const token = localStorage.getItem("pepcoding_token");
         let response = await axios.get(url, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         });
-        console.log(response.data);
+        console.log(response.data, 123456789);
         if (response?.data?.day && response?.data?.day?.length > 0) setEmployeeDay(response.data.day[0]);
     }
 
@@ -87,9 +89,9 @@ export default index
 
 // {/* <>
 //             {
-//                 day_id == "" ? <div className="px-4 py-2 mt-4 font-bold text-white bg-red-500 rounded mt-4 h-10"> Please Check In from Attendance First</div> :
-//                     <div className="lg:col-span-2 mt-4">
-//                         <h2 className="mb-4 text-2xl font-bold leading-7 text-center text-gray-900 sm:text-3xl sm:truncate mb-6">Breaks</h2>
+//                 day_id == "" ? <div className="h-10 px-4 py-2 mt-4 font-bold text-white bg-red-500 rounded"> Please Check In from Attendance First</div> :
+//                     <div className="mt-4 lg:col-span-2">
+//                         <h2 className="mb-4 mb-6 text-2xl font-bold leading-7 text-center text-gray-900 sm:text-3xl sm:truncate">Breaks</h2>
 //                         {/* <button type="button" class="bg-rose-600" disabled>
 //                 <svg class="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
 //                 </svg>
@@ -197,7 +199,7 @@ export default index
 //                             <div className="inline-flex items-end gap-4">
 //                                 {
 //                                     total!=0 &&
-//                                         <div className="pr-10 pb-5">
+//                                         <div className="pb-5 pr-10">
 //                                         Total Breaks : {Math.floor(total/(60*60))} hr {Math.floor((total-Math.floor(total/(60*60))*3600)/60)} min {total%60} sec
 //                                         </div>
 //                                 }
@@ -215,14 +217,14 @@ export default index
 //                                     breakStarted ?
 //                                         <>
 //                                             <button disabled={true}
-//                                                 className="px-4 py-2 font-bold text-white bg-red-600 rounded animate-pulse hover:bg-red-800 mb-5">On going Break</button>
+//                                                 className="px-4 py-2 mb-5 font-bold text-white bg-red-600 rounded animate-pulse hover:bg-red-800">On going Break</button>
 //                                             <button
 //                                                 onClick={endBreakTime}
-//                                                 className="px-4 py-2 font-bold text-white bg-green-500 rounded mb-5">End Break</button>
+//                                                 className="px-4 py-2 mb-5 font-bold text-white bg-green-500 rounded">End Break</button>
 //                                         </> :
 //                                         <button
 //                                             onClick={startBreakTime}
-//                                             className="px-4 py-2 font-bold text-white bg-pink-500 rounded mb-5">Start Break</button>
+//                                             className="px-4 py-2 mb-5 font-bold text-white bg-pink-500 rounded">Start Break</button>
 //                                 }
 
 //                                 {/* <button
